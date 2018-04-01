@@ -1,13 +1,14 @@
 # coding: utf-8
 from flask import Flask, request, render_template
-from curtain_rc import rc
+from curtain_rc import rc,data_read,data_write
+import json
 app = Flask(__name__)
 
 
 help_prompt = '''
 <html>
 <head>
-    <title>沙和尚</title>
+    <title>测试</title>
 </head>
 <body>
 <pre>
@@ -43,13 +44,21 @@ def api_help():
     return help_prompt
 
 
-@app.route('/clrc', methods=['POST'])
+@app.route('/clrc', methods=['GET','POST'])
 def clrc():
+    user = {'name':'Dada'}
     data = request.get_json()
-    print(data)
-    rc(data['ab'], data['number'], data['op'])
-    return 'OK'
+#    j_data =  json.loads(data)
+    #print data
+    if data != None :
+        data_write(data)
+        post_read = data
+    else:    
+      post_read = data_read()
+    print post_read
+#    rc(data['ab'], data['number'], data['op'])
+    return render_template("main.html",data = post_read,user = user)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
