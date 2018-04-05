@@ -49,7 +49,6 @@ def clrc():
     user = {'name':'Dada'}
     data = request.get_json()
 #    j_data =  json.loads(data)
-    #print data
     if data != None :
         data_write(data)
         post_read = data

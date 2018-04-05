@@ -18,7 +18,6 @@ def data_read():
 def data_write(gets):
     f2 = open("data.txt","w")
     data =  gets
-    print data
 #    en_json = json.dumps(json)
 #    data = json.loads(posts)
 #    for i in data.keys():
