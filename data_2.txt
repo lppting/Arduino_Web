@@ -1,0 +1,1 @@
+{u'temperature_2': 20, u'intensity_2': 216, u'humidity_2': 26}

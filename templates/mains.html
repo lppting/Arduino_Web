@@ -1,8 +1,11 @@
+<!--
 <!DOCTYPE html>
 <html>
 <head>
     <title>测试服</title>
-</head>    
+</head>     --!>
+{% extends "base.html" %}
+{% block content %}
 <style>
     .main {
         position: relative;
@@ -86,8 +89,6 @@
         padding: 15px 20px;
     }
 </style>
-<body>
-<script type="text/javascript" src="/static/js/ball.js"></script>
 
 <div class="main">
     <div class="control">
@@ -99,17 +100,16 @@
                 <span>室外温度：{{ data_B.temperature_2 }}℃</span>
                 <span>室外湿度：{{ data_B.humidity_2 }}%</span>
                 <span>室外光强：{{ data_B.intensity_2 }}</span>
-            <span v-text="'实时降水: '+realtime.intensity+'mm'"></span>
-            <span v-text="'实时风力: '+realtime.wind.speed+'m/s'"></span>
         </div>
 
         </div>
     </div>
 </div>
+{% endblock %}
 <!--
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/vue/1.0.8/vue.min.js"></script>
---!>
+
 <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
-</html>
+</html>   --!>
