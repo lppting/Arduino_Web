@@ -1,10 +1,9 @@
-<!--
+<!-- --!>
 <!DOCTYPE html>
 <html>
 <head>
     <title>测试服</title>
-</head>     --!>
-{% extends "base.html" %}
+</head>     
 {% block content %}
 <style>
     .main {
@@ -89,30 +88,16 @@
         padding: 15px 20px;
     }
 </style>
-
-<div class="main">
-    <div class="control">
-    <div class="realtime">
-        <div class="realtime-info">
-		<span>当地天气：晴</span>
-                <span>当地风力：2级</span>
-                <span>空气质量：优</span>
-                <span>室内温度：{{ data_A.temperature_1 }}℃</span>
-		<span>室内湿度：{{ data_A.humidity_1 }}%</span>
-		<span>室内光强：{{ data_A.intensity_1 }}lx</span>
-                <span>室外温度：{{ data_B.temperature_2 }}℃</span>
-                <span>室外湿度：{{ data_B.humidity_2 }}%</span>
-                <span>室外光强：{{ data_B.intensity_2 }}lx</span>
-        </div>
-
-        </div>
-    </div>
-</div>
+<body>
+<h1>{{ T }}</h1>
+<p>{{ Da.author }}</p>
+{% for li in  read_content %}
+       <p>{{ li }}</p>
+{% endfor %}
 {% endblock %}
-<!--
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/vue/1.0.8/vue.min.js"></script>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
-</html>   --!>
+</html>   

@@ -2,6 +2,7 @@
 from flask import Flask, request, render_template
 from curtain_rc import rc,data_1_read,data_1_write,data_2_read,data_2_write
 from control_to import control_0
+from LZ5_read import main,title,reader
 import json
 app = Flask(__name__)
 
@@ -20,7 +21,12 @@ def hello():
 #    return "hello"
     return render_template("mains.html",data_A = post_1_read,data_B = post_2_read)
 
-
+@app.route('/read')
+def lz_read():
+    content = main()
+    titles = title()
+    de = reader()
+    return render_template("read.html",read_content = content,T = titles,Da = de)
 
 @app.route('/post_1',methods=['POST'])
 def post_1():

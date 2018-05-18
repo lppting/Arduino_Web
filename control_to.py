@@ -29,8 +29,9 @@ def control_0():
     t2 = f2.read()
     t3 = eval(t1)
     t4 = eval(t2)
-    n = t3['temperature_1'] - t4['temperature_2']
-    m = t4['temperature_2'] - t3['temperature_1']
+#    print  t3['intensity_2']
+    n = t3['intensity_1'] - t4['intensity_2']
+#    m = t4['intensity_2'] - t3['intensity_1']
     t = datetime.datetime.now()
     t_0 = t.strftime('%H:%M')
     data_op = {}
@@ -47,15 +48,17 @@ def control_0():
 #        d1 = 0
 #        op = 3
 #    else:      
-    if n >= 5:
-        data_op = {'curtain':0}
-
-    elif m > 3:
+    print n
+#    if n > 100:
+#        data_op = {'curtain':0}
+#    elif n < 20:
+#    elif  n < 3:
 #        d1 = 1
 #        op = 5
-        data_op = {'curtain':1}
+#        data_op = {'curtain':1}
 #        print 'open'
-
+#    elif n > 0 and n < 100:
+#        data_op = {'curtain':2}
     f1.close()
     f2.close()
 
