@@ -1,122 +1,28 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <title>测试服</title>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>DaDa</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='web.css')}}"/>
 </head>
-<style>
-    .main {
-        position: relative;
-    }
-
-    .control {
-        position: relative;
-        display: inline-block;
-        height: 700px;
-        width: 900px;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-    }
-
-    .control-panel {
-        display: inline-block;
-    }
-
-    .control-panel-1 {
-        position: absolute;
-        top: 210px;
-        left: 80px;
-    }
-
-    .control-panel-2 {
-        position: absolute;
-        top: 370px;
-        left: 80px;
-    }
-
-    .control-panel-3 {
-        position: absolute;
-        top: 530px;
-        left: 5px;
-    }
-
-    .control-btns {
-        text-align: center;
-        float: right;
-        height: 150px;
-        width: 35px;
-        border: 1px solid #ccc;
-        background-color: rgba(240, 240, 240, 0.9);
-    }
-
-    .control-btns * {
-        display: block;
-        margin: auto;
-    }
-
-    .control-btns-stop {
-        position: relative;
-        bottom: -35px;
-    }
-
-    .control-btns-close {
-        position: relative;
-        bottom: -65px;
-    }
-
-    .realtime {
-        display: inline-block;
-        vertical-align: top;
-    }
-
-    .realtime-info span {
-        display: block;
-        background-color: #eee;
-        height: 30px;
-        line-height: 30px;
-        border: 1px solid #ccc;
-        padding: 10px 20px;
-    }
-
-    .control-plan{
-        margin-top: 10px;
-    }
-
-    .control-plan-item{
-        border: 1px #ccc solid;
-        padding: 15px 20px;
-    }
-</style>
 <body>
-{% if data %}
-<h1>This is {{data.ab}}. </h1>
-<h2>Number is {{data.number}}. </h1>
-<h3>Op is {{ data.op }}.</h1>
-{% else %}
-<h1> Welcome To...</h1>
-
-{% endif %}
-<div class="main">
-    <div class="control">
-    <div class="realtime">
-        <div class="realtime-info">
-            <span v-text="'当前状态: '+realtime.sun"></span>
-            <span v-text="'当前天气: '+weather[realtime.skycon]"></span>
-            <span v-text="'实时温度: '+realtime.temperature+'℃'"></span>
-            <span v-text="'实时湿度: '+realtime.humidity"></span>
-            <span v-text="'实时云量: '+realtime.cloudrate*100+'%'"></span>
-            <span v-text="'污染指数: '+realtime.pm25"></span>
-            <span v-text="'实时降水: '+realtime.intensity+'mm'"></span>
-            <span v-text="'实时风力: '+realtime.wind.speed+'m/s'"></span>
-        </div>
-
-        </div>
-    </div>
-</div>
-<a href="http://cl.xcf.io/api-help">如果你想用 API 控制</a>
-<!
-<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://apps.bdimg.com/libs/vue/1.0.8/vue.min.js"></script>
- !>
-<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+<div class="time" id="res"></div>
 </body>
+<script type="text/javascript">
+    setInterval("GetData()",1000);
+    function GetData(){
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://45.77.176.49:1337/",true);
+        dataType:"jsonp",
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    document.getElementById("res").innerHTML = xhr.responseText;
+
+            }
+        }
+    }
+    xhr.send(null);
+}
+</script>
 </html>

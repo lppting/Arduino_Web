@@ -65,3 +65,17 @@ def control_0():
 #    data_op = {'curtain':0}
 #    print data_op
     return data_op
+def status_write(data):
+    f = open('status.log',"w")
+    st1 = data
+    f.write(str(st1))
+    print st1
+    f.close()
+
+def status_read():
+    f1 = open('status.log',"r")
+    t1 = f1.read()
+#    d1 = eval(t1)
+#    print t1
+    f1.close()
+    return t1

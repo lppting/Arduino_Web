@@ -14,7 +14,7 @@
     .control {
         position: relative;
         display: inline-block;
-        height: 700px;
+        height: 400px;
         width: 900px;
         background-size: 100% 100%;
         background-repeat: no-repeat;
@@ -94,20 +94,111 @@
     <div class="control">
     <div class="realtime">
         <div class="realtime-info">
-		<span>当地天气：晴</span>
+		<span id="weather">当地天气：晴</span>
                 <span>当地风力：2级</span>
                 <span>空气质量：优</span>
-                <span>室内温度：{{ data_A.temperature_1 }}℃</span>
-		<span>室内湿度：{{ data_A.humidity_1 }}%</span>
-		<span>室内光强：{{ data_A.intensity_1 }}lx</span>
-                <span>室外温度：{{ data_B.temperature_2 }}℃</span>
-                <span>室外湿度：{{ data_B.humidity_2 }}%</span>
-                <span>室外光强：{{ data_B.intensity_2 }}lx</span>
+                <span id="t1">室内温度：{{ data_A.temperature_1 }}℃</span>
+		<span id="h1">室内湿度：{{ data_A.humidity_1 }}%</span>
+		<span id="i1">室内光强：{{ data_A.intensity_1 }}lx</span>
+                <span id="t2">室外温度：{{ data_B.temperature_2 }}℃</span>
+                <span id="h2">室外湿度：{{ data_B.humidity_2 }}%</span>
+                <span id="i2">室外光强：{{ data_B.intensity_2 }}lx</span>
         </div>
 
         </div>
     </div>
 </div>
+<button type="submit" class="btn1" onclick="open_1();" id="open_1">OPEN</button>
+<button type="submit" class="btn2" onclick="close_1();" id="close_1">CLOSE</button>
+<button type="submit" class="btn3" onclick="stop_1();" id="stop_1">STOP</button>
+<button type="submit" class="btn4" onclick="show_data();" id="show_data_">SHOW</button>
+<script type="text/javascript">
+
+function stop_1(){
+var xhr = new XMLHttpRequest();
+          xhr.open("POST","/js_get",true);
+          xhr.setRequestHeader('content-type','aplication/json');
+          xhr.onreadystatechange = function()
+          {
+        if (xhr.readyState == 4)
+        {
+        if (xhr.status == 200) {
+            console.log('STOP SUCESS!');
+        }
+        }
+}
+     var st = {'window':1};
+     xhr.send(JSON.stringify(st));
+//     xhr.send(st);
+
+}
+function open_1() {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST","/js_get",true);
+          xhr.setRequestHeader('content-type','aplication/json');
+          xhr.onreadystatechange = function()
+          {
+        if (xhr.readyState == 4)
+        {
+        if (xhr.status == 200) {
+            console.log('OPEN SUCCESS!');
+        }
+        }
+}
+     var st = {'window':2};
+     xhr.send(JSON.stringify(st));
+//     xhr.send(st);
+}
+
+function close_1() {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST","/js_show",true);
+          xhr.setRequestHeader('content-type','aplication/json');
+          xhr.onreadystatechange = function()
+          {
+        if (xhr.readyState == 4)
+        {
+        if (xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            var data1 = {'a':1,'b':2};
+            console.log(data1);
+            console.log(data);
+            document.getElementById("weather").innerHTML = "当地天气："+data.temperature_2;
+        }
+        }
+}
+     var st = {'window':3};
+     xhr.send(JSON.stringify(st));
+//     xhr.send(st);
+     console.log(st);
+}
+setInterval("show_data()",2000);
+function show_data(){
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET","/js_show",true);
+          xhr.setRequestHeader('content-type','aplication/json');
+          xhr.onreadystatechange = function()
+          {
+        if (xhr.readyState == 4)
+        {
+        if (xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            var data1 = {'a':1,'b':2};
+            console.log(data1);
+            console.log(data);
+            document.getElementById("t1").innerHTML = "室内温度："+data.temperature_1;
+            document.getElementById("h1").innerHTML = "室内湿度："+data.humidity_1;
+            document.getElementById("i1").innerHTML = "室内光强："+data.intensity_1;
+            document.getElementById("t2").innerHTML = "室外温度："+data.temperature_2;
+            document.getElementById("h2").innerHTML = "室外湿度："+data.humidity_2;
+            document.getElementById("i2").innerHTML = "室外光强："+data.intensity_2;
+        }
+        }
+}
+        xhr.send(null);
+        console.log("ok");
+}
+</script>
 {% endblock %}
 <!--
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
