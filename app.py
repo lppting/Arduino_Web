@@ -10,7 +10,11 @@ app = Flask(__name__)
 def hello():
     data_1 = data_1_read()
     if data_1 != None :
+<<<<<<< HEAD
         post_1_read = data_1
+=======
+        post_1_read = data_1_read()
+>>>>>>> lpp
     data_2 = data_2_read()
     if data_2 != None :
         post_2_read = data_2_read()
@@ -24,7 +28,7 @@ def web():
     data_1 = data_1_read()
 #    j_data =  json.loads(data)
     if data_1 != None :
-        post_1_read = data_1
+        post_1_read = data_1_read()
     data_2 = data_2_read()
     if data_2 != None :
         post_2_read = data_2_read()
@@ -51,9 +55,19 @@ def post_1():
 
 @app.route('/clrc', methods=['GET','POST'])
 def clrc():
+<<<<<<< HEAD
     default = {'window':0}
     status_1 = default
     data_1 = request.get_json()
+=======
+    data_1 = request.get_json()
+    if data_1 != None :
+        data_1_write(data_1)
+#        d = data_2
+    default = {'window':0}
+    status_1 = default
+    data_1 = request.get_json()
+>>>>>>> lpp
 #    j_data =  json.loads(data_1)
     print data_1
     data_2 = status_read()
@@ -79,15 +93,25 @@ def clrc():
 #    else:
      
 #        d = data_1
+<<<<<<< HEAD
     print 'ok' 
 #    print d['window']
     print status_1
+=======
+#    print 'ok' 
+#    print d['window']
+#    print status_1
+>>>>>>> lpp
     return json.dumps(status_1)
 
 @app.route('/js_get',methods=['GET','POST'])
 def js_get():
     st1 = request.get_data()
+<<<<<<< HEAD
     print st1
+=======
+#    print st1
+>>>>>>> lpp
     st2 =  status_read()
 #    if st1 == None:
     data_1 =  eval(st1)
@@ -97,4 +121,8 @@ def js_get():
     return json.dumps(st1)
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(host='0.0.0.0', port=8070, debug=True)
+=======
+    app.run(host='0.0.0.0', port=8060, debug=True)
+>>>>>>> lpp

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {u'temperature_2': 32, u'intensity_2': 18621, u'humidity_2': 35}
+=======
+{u'temperature_2': 31, u'intensity_2': 740, u'humidity_2': 39}
+>>>>>>> lpp

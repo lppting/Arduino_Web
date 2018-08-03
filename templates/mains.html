@@ -172,7 +172,11 @@ function close_1() {
 //     xhr.send(st);
      console.log(st);
 }
+<<<<<<< HEAD
 setInterval("show_data()",2000);
+=======
+setInterval("show_data()",10000);
+>>>>>>> lpp
 function show_data(){
           var xhr = new XMLHttpRequest();
           xhr.open("GET","/js_show",true);
@@ -186,12 +190,21 @@ function show_data(){
             var data1 = {'a':1,'b':2};
             console.log(data1);
             console.log(data);
+<<<<<<< HEAD
             document.getElementById("t1").innerHTML = "室内温度："+data.temperature_1;
             document.getElementById("h1").innerHTML = "室内湿度："+data.humidity_1;
             document.getElementById("i1").innerHTML = "室内光强："+data.intensity_1;
             document.getElementById("t2").innerHTML = "室外温度："+data.temperature_2;
             document.getElementById("h2").innerHTML = "室外湿度："+data.humidity_2;
             document.getElementById("i2").innerHTML = "室外光强："+data.intensity_2;
+=======
+            document.getElementById("t1").innerHTML = "室内温度："+data.temperature_1 + "℃";
+            document.getElementById("h1").innerHTML = "室内湿度："+data.humidity_1 + "%";
+            document.getElementById("i1").innerHTML = "室内光强："+data.intensity_1 + "lx";
+            document.getElementById("t2").innerHTML = "室外温度："+data.temperature_2 + "℃";
+            document.getElementById("h2").innerHTML = "室外湿度："+data.humidity_2 + "%";
+            document.getElementById("i2").innerHTML = "室外光强："+data.intensity_2 + "lx";
+>>>>>>> lpp
         }
         }
 }

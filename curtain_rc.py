@@ -11,7 +11,7 @@ def data_1_read():
     f1 = open("data_1.txt","r")
     postdata = f1.read()
     d = eval(postdata)
-    print type(d)
+#    print type(d)
     f1.close()
     return d
 
@@ -27,7 +27,7 @@ def data_2_read():
     f1 = open("data_2.txt","r")
     postdata = f1.read()
     d = eval(postdata)
-    print type(d)
+#    print type(d)
     f1.close()
     return d
 
